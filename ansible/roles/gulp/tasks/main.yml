@@ -1,5 +1,0 @@
----
-
-- name: Intall Gulp
-  npm: name=gulp state=present global=yes
-  sudo: yes

@@ -44,14 +44,18 @@
     SDLC_ENVIRON: local
 
 - name: Install Bower
-  npm: name={{ item }} state=present global=yes
-  with_items:
-  - bower
+  npm: name=bower state=present global=yes
 
 - name: Install Bower packages
   bower: path=/home/vagrant/src/
   sudo: no
 
+- name: Intall Gulp
+  npm: name=gulp state=present global=yes
+  sudo: yes
+
 - name: Rebuild node-sass
   shell: npm rebuild node-sass
+  args:
+    chdir: /home/vagrant/src/
   sudo: yes

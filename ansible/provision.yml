@@ -3,6 +3,5 @@
 - hosts: environment-dev-*
   roles:
     - base
-    - gulp
     - postgres
   sudo: yes
