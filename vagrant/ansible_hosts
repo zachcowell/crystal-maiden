@@ -1,0 +1,1 @@
+environment-dev-0 ansible_ssh_host=localhost ansible_ssh_port=2222

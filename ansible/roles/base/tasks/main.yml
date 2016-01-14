@@ -1,0 +1,57 @@
+---
+- name: Update apt cache
+  apt: update-cache=yes cache_valid_time=86400
+  sudo: yes
+
+- name: Update all packages
+  apt: upgrade=dist
+  sudo: yes
+
+- name: install basic packages
+  sudo: yes
+  apt: pkg={{ item }} state=latest
+  tags: [packages]
+  with_items:
+    - curl
+    - vim
+    - libxslt1-dev 
+    - libxml2-dev
+    - zip
+    - libssl-dev
+    - unzip
+    - python-pip
+    - python-psycopg2
+    - apg
+    - mercurial
+    - git
+    - nodejs
+    - npm
+
+- name: Ensure that ansible_cache_dir directory exists
+  file: path={{ ansible_cache_dir }} state=directory
+  sudo: yes
+
+- name: install n (node version installer/switcher)
+  npm: name=n state=present global=yes
+
+- name: install the latest stable version of node
+  shell: n stable
+
+- name: Install NPM packages
+  npm: path=/home/vagrant/src/
+  sudo: yes
+  environment:
+    SDLC_ENVIRON: local
+
+- name: Install Bower
+  npm: name={{ item }} state=present global=yes
+  with_items:
+  - bower
+
+- name: Install Bower packages
+  bower: path=/home/vagrant/src/
+  sudo: no
+
+- name: Rebuild node-sass
+  shell: npm rebuild node-sass
+  sudo: yes

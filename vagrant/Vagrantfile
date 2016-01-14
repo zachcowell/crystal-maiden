@@ -1,0 +1,35 @@
+# This vagrant file builds a environment development environment.
+#
+# Once built, you can access it normally via 'vagrant ssh'.  You
+# can also forward ports, for example, the consul ui:
+#
+#  $ vagrant ssh -- -L 8500:localhost:8500
+#
+# The -L option can be repeated for additional ports.
+#
+VAGRANTFILE_API_VERSION = "2"
+
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu/trusty64"
+
+  # NB:  this value is used in ansible playbook and inventory.
+  config.vm.define 'environment-dev-0'
+  config.vm.network :private_network, ip: '10.1.100.100'
+  config.vm.network :forwarded_port, guest: 3000, host: 3000
+
+  config.vm.synced_folder '..', '/home/vagrant/src'
+
+  config.ssh.forward_agent = true
+
+  config.vm.provider 'virtualbox' do |v|
+    v.memory = 2048
+    v.cpus = 2
+  end
+
+  config.vm.provision 'ansible' do |ansible|
+    ansible.playbook = '../ansible/provision.yml'
+    ansible.inventory_path = 'ansible_hosts'
+    ansible.verbose = 'vv'
+  end
+end
