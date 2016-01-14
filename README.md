@@ -14,6 +14,10 @@ Vagrant/Ansible starter kit that contains node, gulp, bower
 
 * Connect to the vagrant machine: `vagrant ssh`
 
+* Fire up the gulp process
+`cd src`
+`gulp`
+
 * Hit: [http://localhost:3000/](http://localhost:3000) in your browser to see everything installed correctly.
 
 ## Coming back to the code after setting it up
