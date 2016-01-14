@@ -1,5 +1,5 @@
 var fs = require('fs')
-var parseString = require('xml2js').parseString;
+var xml2js = require('xml2js');
 
 module.exports = function(app){
     app.get('/test', function(req, res){ res.status(200).send('this is the body') });
@@ -8,19 +8,22 @@ module.exports = function(app){
      * Entry point for XML parsing; this is stub data and should be replaced
      */
     app.get('/patient/data',function(req, res){
+        var parser = new xml2js.Parser();
         var tempFilepath = '/home/vagrant/src/app/data/cerner_ccda.xml';
-        fs.readFile(tempFilepath, 'utf8', function (err, xml) {
-          if (err) {
-            res.status(500).send('Error fetching XML');
-          }
-          parseString(xml, function (err, result) {
+        fs.readFile(tempFilepath, function(err, xml) {
             if (err) {
-                res.status(500).send('Error parsing XML');
+                res.status(500).send('Error fetching XML');
             }
-            res.status(200).send(result);  
-          });
+            parser.parseString(xml, function (err, result) {
+                if (err) {
+                    res.status(500).send('Error parsing XML');
+                }
+                res.status(200).send(result);  
+            });
         });
     });
     // End stub
 
 }
+
+
