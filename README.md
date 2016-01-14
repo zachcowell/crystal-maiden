@@ -1,4 +1,4 @@
-# vagrant-ansible-node
+# crystal-maiden
 Vagrant/Ansible starter kit that contains node, gulp, bower
 
 ## Setting up the environment for the first time
@@ -9,7 +9,7 @@ Vagrant/Ansible starter kit that contains node, gulp, bower
 
 * [Install Ansible](http://ansible.com)
 
-* run `vagrant up --provision` from `vagrant-ansible-node/vagrant` directory.
+* run `vagrant up --provision` from `crystal-maiden/vagrant` directory.
   * *This may take some long the first time its run.*
 
 * Connect to the vagrant machine: `vagrant ssh`
@@ -18,7 +18,7 @@ Vagrant/Ansible starter kit that contains node, gulp, bower
 
 ## Coming back to the code after setting it up
 
-* Start the vagrant instance again `vagrant up` from `vagrant-ansible-node/vagrant`
+* Start the vagrant instance again `vagrant up` from `crystal-maiden/vagrant`
 
 * Connect to the vagrant machine: `vagrant ssh`
 

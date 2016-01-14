@@ -16,7 +16,7 @@
   sudo_user: postgres
 
 - postgresql_db:
-    name=countdown
+    name=crystal
     encoding='UTF-8'
     template='template0'
     owner='vagrant'
