@@ -3,11 +3,11 @@ Vagrant/Ansible starter kit that contains node, gulp, bower
 
 ## Setting up the environment for the first time
 
-* [Install Vagrant](http://vagrantup.com)
-
 * [Install Virtualbox](http://virtualbox.org)
 
-* [Install Ansible](http://ansible.com)
+* [Install Vagrant](http://vagrantup.com)
+
+* [Install Ansible](http://ansible.com) `brew install ansible`
 
 * run `vagrant up --provision` from `crystal-maiden/vagrant` directory.
   * *This may take some long the first time its run.*
